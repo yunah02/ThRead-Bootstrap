@@ -25,20 +25,25 @@
 
       /* Navbar 관련 스타일 */
       .fixed-top-custom {
-        position: absolute;
+        position: absolute; /* 페이지 최상단에서 절대 위치 */
         top: 0;
         left: 0;
         width: 100%;
-        z-index: 1000;              
-        background: transparent;     
+        z-index: 1000; /* 항상 Hero 위에 표시 */
+        background: transparent; /* 배경 투명 */
       }
-        /* 로고 */
+
+      /* 로고 */
       .logo {
         font-family: "GmarketSansTTFMedium", sans-serif;
         font-size: 1.6rem;
       }
-      .logo-th   { color: #fff; }
-      .logo-read { color: #e03131; }
+      .logo-th {
+        color: #fff;
+      }
+      .logo-read {
+        color: #fe4a51; /* 수정: #e03131 → #fe4a51 */
+      }
 
       /* 메뉴 */
       .navbar-nav .nav-link {
@@ -49,7 +54,7 @@
       }
       .navbar-nav .nav-link:hover,
       .navbar-nav .nav-link:focus {
-        color: #e03131;
+        color: #fe4a51; /* 수정: hover 색 #e03131 → #fe4a51 */
       }
 
       /* 모바일 햄버거 펼쳤을 때 가독성 */
@@ -60,9 +65,11 @@
           border-radius: 0.5rem;
           margin-top: 0.5rem;
         }
-        .navbar-nav .nav-link { margin-left: 0; }
+        .navbar-nav .nav-link {
+          margin-left: 0;
+        }
       }
-      
+
       /* Hero 섹션 관련 스타일 */
       .hero-section {
         min-height: 80vh;
@@ -104,6 +111,12 @@
         border-radius: 0.2rem;
         padding: 0 1rem;
       }
+      /* 추가: 모바일에서 제목이 "AI 기반 도서 분석 및" 한 줄에 들어가도록 글자 크기 축소 */
+      @media (max-width: 575.98px) {
+        .hero-title {
+          font-size: 1.8rem;
+        }
+      }
       .hero-subtitle {
         font-weight: 700;
         font-size: 1.5rem;
@@ -115,11 +128,6 @@
       .hero-subtitle .read {
         color: #fe4a51;
         font-family: "GmarketSansTTFMedium";
-      }
-      @media (max-width: 576px) {
-        .d-412-break {
-          display: block;
-        }
       }
     </style>
   </head>
@@ -135,40 +143,52 @@
     -->
 
     <!-- 여기에 Navbar 코드를 작성하세요 -->
-  <nav class="navbar navbar-expand-sm navbar-dark fixed-top-custom" id="mainNav">
-    <div class="container">
-      <!-- 좌측 로고 -->
-      <a class="navbar-brand logo" href="#">
-        <span class="logo-th">Th</span><span class="logo-read">Read</span>
-      </a>
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top-custom" id="mainNav">
+      <div class="container">
+        <!-- 좌측 로고 -->
+        <a class="navbar-brand logo" href="#">
+          <span class="logo-th">Th</span><span class="logo-read">Read</span>
+        </a>
 
-      <!-- 햄버거 버튼 (576px 이하에서만 노출) -->
-      <button class="navbar-toggler" type="button"
-              data-bs-toggle="collapse" data-bs-target="#navMenu"
-              aria-controls="navMenu" aria-expanded="false" aria-label="메뉴 열기">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <!-- 햄버거 버튼 (576px 미만에서만 노출) -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+          aria-controls="navMenu"
+          aria-expanded="false"
+          aria-label="메뉴 열기"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <!-- 우측 메뉴 -->
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#">쓰레드</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">도서 검색</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">마이 페이지</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">로그아웃</a></li>
-        </ul>
+        <!-- 우측 메뉴 -->
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#">쓰레드</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">도서 검색</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">마이 페이지</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">로그아웃</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+
     <!-- 2. Hero 섹션 -->
     <section class="hero-section">
       <img src="assets/nav/hero_image.jpg" alt="Hero Image" class="hero-img" />
       <div class="hero-overlay"></div>
       <div class="hero-content">
+        <!-- 576px 미만에서만 "AI 기반 도서 분석 및" 뒤에서 줄바꿈 (<br> 활용) -->
         <h1 class="hero-title">
-          AI 기반 도서 분석 및 창작 지원 통합 솔루션 서비스
+          AI 기반 도서 분석 및<br class="d-sm-none" />
+          창작 지원 통합 솔루션 서비스
         </h1>
-        <div class="hero-subtitle">ThRead</div>
+        <!-- "Th"는 흰색, "Read"는 붉은색 -->
+        <div class="hero-subtitle">
+          <span class="th">Th</span><span class="read">Read</span>
+        </div>
       </div>
     </section>
 
